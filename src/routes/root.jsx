@@ -61,6 +61,7 @@ export default function Root() {
                   backgroundColor='transparent'
                   border='0px'
                   fontSize={20}
+                  _focusVisible={{ outline: 'none' }}
                   onChange={(event) => setUrl(event.target.value)}
                   placeholder='Enter an ENS URL' 
                 />

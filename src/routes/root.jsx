@@ -5,7 +5,9 @@ import { Text } from "@chakra-ui/react"
 
 import { Input } from '@chakra-ui/react'
 
-import thumbImg from '../thumb.png';
+import evmcrisprImg from '../assets/evmcrispr.png';
+import vitalikImg from '../assets/vitalik.png';
+import uniswapImg from '../assets/uniswap.png';
 
 
 export default function Root() {
@@ -18,8 +20,7 @@ export default function Root() {
     }
     return (
       <>
-        <Box h='100vh' display="flex" flexDirection='column' justifyContent="center" alignItems="center">
-        <div id="home-section">
+        <Box h='100vh' maxW="800px" margin="auto" display="flex" flexDirection='column' justifyContent="center" alignItems="center">
           <Flex align="center" justify="center">
 
             <Text
@@ -28,7 +29,7 @@ export default function Root() {
                 fontSize={50}
                 fontWeight="normal"
               >
-                WayBackMachine
+                WaybackMachine
             </Text> 
                         
           </Flex>
@@ -36,10 +37,11 @@ export default function Root() {
             <Text
                 backgroundColor='#525252'
                 bgClip="text"
+                align="center"
                 fontSize={16}
                 fontWeight="normal"
               >
-                Explore más de 765 mil millones de ENS guardadas a lo largo del tiempo
+                The InterPlanetary Wayback Machine allows the user to go back in time and see how ENS linked dApps looked in the past. It also allows to donate in Filecoin to the preservation of those websites.
             </Text> 
           </Flex>
           <Flex align="center" justify="center" mt='30px'>
@@ -69,7 +71,6 @@ export default function Root() {
               
             </form>
           </Flex>
-        </div>
         <div id="featured-domains" w='70vw'>    
           <Flex align="center" justify="center">          
             <Grid templateColumns='repeat(3, 1fr)' w='70%' mt='80px' gap={6} autoFlow="row dense">    
@@ -83,7 +84,7 @@ export default function Root() {
                     <Card>
                       <CardBody p='0px'>
                         <Image 
-                          src={ thumbImg } 
+                          src={ evmcrisprImg } 
                           alt='evmscript'
                           w='100%'                         
                         />
@@ -97,12 +98,12 @@ export default function Root() {
                 overflow='hidden'
                 borderRadius="20px"
                 >
-                <Link href='./#/evmcrispr.eth'>                                            
+                <Link href='./#/uniswap.eth'>                                            
                     <Card>
                       <CardBody p='0px'>
                         <Image 
-                          src={ thumbImg } 
-                          alt='evmscript'
+                          src={ uniswapImg } 
+                          alt='uniswap'
                           w='100%'                         
                         />
                       </CardBody>
@@ -117,12 +118,12 @@ export default function Root() {
                 overflow='hidden'
                 borderRadius="20px"
                 >
-                <Link href='./#/evmcrispr.eth'>                                            
+                <Link href='./#/vitalik.eth'>                                            
                     <Card>
                       <CardBody p='0px'>
                         <Image 
-                          src={ thumbImg } 
-                          alt='evmscript'
+                          src={ vitalikImg } 
+                          alt='vitalik'
                           w='100%'                         
                         />
                       </CardBody>

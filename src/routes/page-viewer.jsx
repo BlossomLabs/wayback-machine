@@ -3,6 +3,10 @@ import { useParams } from "react-router-dom";
 import contentHash from 'content-hash'
 import { providers } from 'ethers'
 import { Chrono } from 'react-chrono'
+import { Box, Flex, Input, Button, useClipboard, Text, Link } from "@chakra-ui/react"
+
+
+import logoImg from '../wayback-logo.png';
 
 const provider = new providers.StaticJsonRpcProvider('https://eth-mainnet.g.alchemy.com/v2/BZwin08uUdw6bSIy5pvWnglh7EXeQo64')
 
@@ -38,8 +42,11 @@ export default function PageViewer() {
 
   const { url } = useParams()
   const [snapshots, setSnapshots] = useState([])
-  const [ipfsUrl, setIpfsUrl] = useState('')
+  const { onCopy, value: ipfsUrl, setValue: setIpfsUrl, hasCopied } = useClipboard("");
 
+  const urlPlaceholder = ipfsUrl.slice(0, 6);
+  const urlPlaceholder2 = ipfsUrl.slice(-4);
+  const fullUrl = urlPlaceholder+'...'+urlPlaceholder2;
 
     const handleSnapshotChange = (item) => {
         setIpfsUrl(snapshots[Number(item.url)].hash)
@@ -91,6 +98,26 @@ export default function PageViewer() {
 
   return (
     <>
+      <Flex px='30px' pt='15px' bg='rgba(196, 196, 196, 0.18);' alignItems="inherit">      
+          <Box
+          mr='15px'          
+          >
+            <Link href='/'
+            _hover={{
+              textDecoration: "unset",              
+            }}
+            >
+              <Text
+                  backgroundColor='#31E1F7'
+                  bgClip="text"
+                  fontSize={50}
+                  fontWeight="normal"
+                  whiteSpace='nowrap'
+                >
+                  WayBackMachine
+              </Text>  
+            </Link>            
+          </Box>
         <Chrono
             items={snapshots.map(({date}, i) => ({url: i, title: new Date(date * 1000).toLocaleDateString('en-US', dateOptions)}))}
             activeItemIndex={snapshots.length - 1}
@@ -99,7 +126,50 @@ export default function PageViewer() {
             mode="HORIZONTAL"
             allowDynamicUpdate
             onItemSelected={handleSnapshotChange}
+            theme={{
+              primary: '#31E1F7',
+              secondary: '#08AFC4',          
+              titleColor: '000000',
+              titleColorActive: '#000000',
+            }}
         />
+        <Box 
+        ml='15px'
+        display="flex" 
+        alignItems="center"    
+        minW='max-content'               
+        >      
+          <Box    
+          pl='20px'       
+          backgroundColor='rgba(196, 196, 196, 0.18);'
+          borderRadius='30'
+          h='40px'
+          mr='15px'
+          >            
+            <Input 
+            value={fullUrl}
+            backgroundColor='transparent'
+            border='0px'
+            p='0px'
+            maxW='150px'
+            fontSize={20}
+            _focusVisible={{ outline: 'none' }}
+            
+            />
+          </Box>                              
+           
+          <Button
+            backgroundColor='#31E1F7' 
+            _hover={{
+              background: "#045862",
+              color: "#ffffff",
+            }}
+            onClick={onCopy}
+          >{hasCopied ? "Copied!" : "Copy"}</Button>
+        </Box>
+      </Flex>
+      
+        
         <iframe width="100%" style={{minHeight: "100vh", border: 0}} src={ipfsUrl? `https://${ipfsUrl}.ipfs.dweb.link/`: ''} />
     </>
   );

@@ -28,7 +28,7 @@ export default function Root() {
                 fontSize={50}
                 fontWeight="normal"
               >
-                Wayback Machine
+                WayBackMachine
             </Text> 
                         
           </Flex>
@@ -88,9 +88,7 @@ export default function Root() {
                           w='100%'                         
                         />
                       </CardBody>
-                    </Card>
-                  
-                  
+                    </Card>                                    
                 </Link>
               </GridItem>
               <GridItem 
